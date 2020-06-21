@@ -1,29 +1,25 @@
-def calc(s, x, y):
+a = input('Ввведите операцию, используя метод "Польской нотации" ')
+b = a.split(' ')
 
-    operations = ('+', '-', '/', '*')
-    z = 0
+#AssertionError
+b[0] == '+'
+assert b[0] in ['+', '-', '*', '/'], 'Внимание! Неверный знак операции.'
+print(b)
 
-    try:
-        assert s in operations
-        print('Операция "{}" в списке есть.'.format(s))
-    except AssertionError:
-        print('Внимание! Неверный знак операции.')
+try:
+  if b[0] == '+':
+    result = int(b[1]) + int(b[2])
+  elif b[0] == '-':
+    result = int(b[1]) - int(b[2])
+  elif b[0] == '*':
+    result = int(b[1]) * int(b[2])
+  elif b[0] == '/':
+    result = int(b[1]) / int(b[2])
+  print(result)
+except ZeroDivisionError:
+    print('Внимание! Делить на ноль нельзя.')
+except ValueError:
+    print('Внимание! Ошибка в типе значения.')
+except IndexError:
+    print('Внимание! Неправильное количество аргументов.')
 
-    try:
-        x = int(x)
-        y = int(y)
-        if s == '+':
-            z = x + y
-        elif s == '-':
-            z = x - y
-        elif s == '*':
-            z = x * y
-        elif s == '/':
-            z = x / y
-        print("Результат:", z)
-    except ZeroDivisionError:
-            print('Внимание! Делить на ноль нельзя.')
-    except ValueError:
-        print('Внимание! Ошибка в типе значения.')
-
-calc(input('Введите знак для метода польской нотации (+,-,*,/):'), input('Введите первое число =  '), input('Введите второе число = '))
